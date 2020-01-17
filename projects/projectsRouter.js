@@ -1,6 +1,5 @@
 const express = require('express');
 const projectDB = require('../data/helpers/projectModel');
-const actionDB = require('../data/helpers/actionModel');
 const router = express.Router();
 
 //get --> all projects
@@ -92,7 +91,7 @@ router.put('/:id', (req, res) => {
     });
 });
 
-// get --> projects by action id (save til the end) -- not sure if working --> can't figure out data structure??
+// get --> projects by action id
 router.get('/:id/actions', (req, res) => {
   const ID = req.params.id;
 
