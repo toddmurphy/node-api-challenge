@@ -32,8 +32,26 @@ router.post('/', (req, res) => {
     });
 });
 
-//get --> single project by id
-router.get('/:id', (req, res) => {});
+//get --> single project by id --> no helper function for this but wanted to see if it works but it doesnt work
+router.get('/:id', (req, res) => {
+  const projectID = req.params.id;
+
+  projectDB
+    .get(projectID)
+    .then(project => {
+      if (project) {
+        res.status(201);
+        res.status(project);
+      } else {
+        res.status(401);
+        res.json({ message: 'Sorry, no project with that id' });
+      }
+    })
+    .catch(error => {
+      res.status(500);
+      res.json({ errorMessage: 'Sorry, no project by that id returned from server', error });
+    });
+});
 
 //delete --> by id
 router.delete('/:id', (req, res) => {});
