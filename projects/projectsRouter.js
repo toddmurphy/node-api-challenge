@@ -54,7 +54,25 @@ router.get('/:id', (req, res) => {
 });
 
 //delete --> by id
-router.delete('/:id', (req, res) => {});
+router.delete('/:id', (req, res) => {
+  const deleteID = req.params.id;
+
+  projectDB
+    .remove(deleteID)
+    .then(deletedProject => {
+      if (deleteID) {
+        res.status(200);
+        res.json(deletedProject);
+      } else {
+        res.status(400);
+        res.json({ message: 'Sorry, project not deleted' });
+      }
+    })
+    .catch(error => {
+      res.status(500);
+      res.json({ errorMessage: 'Sorry, project not deleted from server', error });
+    });
+});
 
 //put --> updated using id and req.body
 router.put('/:id', (req, res) => {});
