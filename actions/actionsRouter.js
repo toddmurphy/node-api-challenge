@@ -55,11 +55,11 @@ router.delete('/:id', (req, res) => {
 
 // put --> update project by id and req.body
 router.put('/:id', (req, res) => {
-  const actionID = req.param.id;
-  const updatedAction = req.body;
+  //   const projectID = req.param.id;
+  //   const updatedAction = req.body;
 
   actionsDB
-    .update(actionID, updatedAction)
+    .update(req.params.id, req.body)
     .then(updatedInfo => {
       res.status(200);
       res.json(updatedInfo);

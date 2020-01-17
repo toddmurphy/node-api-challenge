@@ -93,13 +93,13 @@ router.put('/:id', (req, res) => {
 });
 
 // get --> projects by action id (save til the end) -- not sure if working --> can't figure out data structure??
-router.get('/:id/actions', (req, res) => {
+router.get('/:id/projects', (req, res) => {
   const project_id = req.params.id;
   const projectBody = req.body;
-  const newProject = { description: projectBody.description, notes: projectBody.notes, project_id };
+  const newProject = { description: projectBody.description, notes: projectBody.notes, project_id: Number(project_id) };
 
-  actionDB
-    .get(newProject)
+  projectDB
+    .getProjectActions(newProject)
     .then(action => {
       res.status(200);
       res.json({ action });
