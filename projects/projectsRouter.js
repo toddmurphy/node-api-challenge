@@ -75,7 +75,21 @@ router.delete('/:id', (req, res) => {
 });
 
 //put --> updated using id and req.body
-router.put('/:id', (req, res) => {});
+router.put('/:id', (req, res) => {
+  const projectID = req.params.id;
+  const updatedProject = req.body;
+
+  projectDB
+    .update(projectID, updatedProject)
+    .then(project => {
+      res.status(200);
+      res.json(project);
+    })
+    .catch(error => {
+      res.status(500);
+      res.json({ errorMessage: 'Sorry, project not updated on the server', error });
+    });
+});
 
 // get --> projects by action id (save til the end)
 
