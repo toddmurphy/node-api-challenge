@@ -40,13 +40,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+Two things I learned about express this week: 1. express is a third party library that can easily built upon and lots of third party applications integrated (flexible and somewhat unopinionated), and 2: very fast to build custom api to server up data and connect web applications, mobile apps, etc.
+
 - [ ] Describe Middleware?
+
+Middleware is custom functions or libraries that can be integrated to express, such as loggers, authentications, and helper function to intercept or hijack the req, res process to do something, and then continue on with the req, res process.
 
 - [ ] Describe a Resource?
 
+A resource is anything that we want to server up to the client by hitting an endpoint to retrieve that data, such as: posts, delete posts, products, inventory. etc.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+If a request was successful, an api can return a specific status code to let the user and server know the request was successful, such as a 200, 201.
+
 - [ ] How can we partition our application into sub-applications?
+
+We can partition our application into sub-applications by using server side routing and splitting up our application in multiple files, routers, to enable cleaner code and more modular code base, and so the next developer can understand the application better.
 
 ## Minimum Viable Product
 
@@ -104,3 +114,5 @@ We have provided test data for all the resources.
 - From the React application show a list of all _projects_ using the API you built.
 - Add functionality to show the details of a project, including its actions, when clicking a project name in the list. Use React Router to navigate to a separate route to show the project details.
 - Add styling!
+
+# First commit for web api sprint challenge
