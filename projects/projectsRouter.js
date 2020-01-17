@@ -12,12 +12,25 @@ router.get('/', (req, res) => {
     })
     .catch(error => {
       res.status(500);
-      res.json({ message: 'Sorry, no projects returned from the server', error });
+      res.json({ errorMessage: 'Sorry, no projects returned from the server', error });
     });
 });
 
 //post --> using req.body
-router.post('/', (req, res) => {});
+router.post('/', (req, res) => {
+  const newProject = req.body;
+
+  projectDB
+    .insert(newProject)
+    .then(project => {
+      res.status(201);
+      res.json(project);
+    })
+    .catch(error => {
+      res.status(500);
+      res.json({ errorMessage: 'Sorry, no new project created on the server', error });
+    });
+});
 
 //get --> single project by id
 router.get('/:id', (req, res) => {});
