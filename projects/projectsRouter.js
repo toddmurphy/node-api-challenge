@@ -1,5 +1,6 @@
 const express = require('express');
 const projectDB = require('../data/helpers/projectModel');
+const actionDB = require('../data/helpers/actionModel');
 const router = express.Router();
 
 //get --> all projects
@@ -91,6 +92,22 @@ router.put('/:id', (req, res) => {
     });
 });
 
-// get --> projects by action id (save til the end)
+// get --> projects by action id (save til the end) -- not sure if working??
+router.get('/:id/actions', (req, res) => {
+  const project_id = req.params.id;
+  const projectBody = req.body;
+  const newProject = { description: projectBody.description, notes: projectBody.notes, project_id };
+
+  actionDB
+    .get(newProject)
+    .then(action => {
+      res.status(200);
+      res.json({ action });
+    })
+    .catch(error => {
+      res.status(500);
+      res.json({ errorMessage: 'Sorry, no actions returned on project from the server', error });
+    });
+});
 
 module.exports = router;

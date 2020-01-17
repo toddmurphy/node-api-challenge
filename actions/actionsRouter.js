@@ -17,7 +17,20 @@ router.get('/', (req, res) => {
 });
 
 // post --> new project
-router.post('/', (req, res) => {});
+router.post('/', (req, res) => {
+  const newPost = req.body;
+
+  actionsDB
+    .insert(newPost)
+    .then(post => {
+      res.status(200);
+      res.json(post);
+    })
+    .catch(error => {
+      res.status(500);
+      res.json({ errorMessage: 'Sorry, no new action created on the server', error });
+    });
+});
 
 // delete --> delete project by id
 router.delete('/:id', (req, res) => {});
