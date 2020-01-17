@@ -37,7 +37,7 @@ router.delete('/:id', (req, res) => {
   const actionID = req.params.id;
 
   actionsDB
-    .delete(actionID)
+    .remove(actionID)
     .then(deletedAction => {
       if (actionID) {
         res.status(201);
