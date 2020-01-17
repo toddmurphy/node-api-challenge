@@ -33,9 +33,41 @@ router.post('/', (req, res) => {
 });
 
 // delete --> delete project by id
-router.delete('/:id', (req, res) => {});
+router.delete('/:id', (req, res) => {
+  const actionID = req.params.id;
+
+  actionsDB
+    .delete(actionID)
+    .then(deletedAction => {
+      if (actionID) {
+        res.status(201);
+        res.json(deletedAction);
+      } else {
+        res.status(400);
+        res.json({ message: 'Sorry, action not deleted' });
+      }
+    })
+    .catch(error => {
+      res.status(500);
+      res.json({ errorMessage: 'Sorry, actino not deleted from server', error });
+    });
+});
 
 // put --> update project by id and req.body
-router.put('/:id', (req, res) => {});
+router.put('/:id', (req, res) => {
+  const actionID = req.param.id;
+  const updatedAction = req.body;
+
+  actionsDB
+    .update(actionID, updatedAction)
+    .then(updatedInfo => {
+      res.status(200);
+      res.json(updatedInfo);
+    })
+    .catch(error => {
+      res.status(500);
+      res.json({ errorMessage: 'Sorry, action not updated on the server', error });
+    });
+});
 
 module.exports = router;
