@@ -39,17 +39,12 @@ router.get('/:id', (req, res) => {
   projectDB
     .get(projectID)
     .then(project => {
-      if (project) {
-        res.status(201);
-        res.status(project);
-      } else {
-        res.status(401);
-        res.json({ message: 'Sorry, no project with that id' });
-      }
+      res.status(200);
+      res.json(project);
     })
     .catch(error => {
       res.status(500);
-      res.json({ errorMessage: 'Sorry, no project by that id returned from server', error });
+      res.json({ errorMessage: 'Sorry, no projects returned from the server', error });
     });
 });
 
